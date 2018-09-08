@@ -64,3 +64,8 @@ tf_price_pred = tf.add(tf.multiply(tf_size_factor, house_size), tf_price_offset)
 #   Define the loss function (how much error) - Mean squared error
 tf_cost = tf.reduce_sum(tf.pow(tf_price_pred - tf_price, 2))/(2*num_train_samples)
 
+#   Optimizer learning rate. The size of the steps down the gradient
+learning_rate = 0.1
+
+#   Define a Gradient descent optimizer that will minimize the loss defined in the operation "cost"
+optimizer = tf.train.GradientDescentOptimizer(learning_rate).minimize(tf_cost)
