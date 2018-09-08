@@ -28,7 +28,7 @@ plt.show()
 
 # you need to normalize values to prevent under/overflows.
 def normalize(array):
-    return (array - array.mean()) / array.std()
+    return (array - array.mean()) / array.std() # .std() is the Standard Deviation of the array
 
 # define number of training samples, 0.7 = 70%.  We can take the first 70% since the values are randomized
 num_train_samples = math.floor(num_house * 0.7)
@@ -97,11 +97,14 @@ with tf.Session() as sess:
 
         # Fit all training data
         for (x, y) in zip(train_house_size_norm, train_price_norm):
-            sess.run(optimizer, feed_dict={tf_house_size: x, tf_price: y})
+            sess.run(optimizer, feed_dict={
+                tf_house_size: x, 
+                tf_price: y
+            })
 
         # Display current status
         if (iteration + 1) % display_every == 0:
-            c = sess.run(tf_cost, feed_dict={tf_house_size: train_house_size_norm, tf_price:train_price_norm})
+            c = sess.run(tf_cost, feed_dict={tf_house_size: train_house_size_norm, tf_price: train_price_norm})
             print("iteration #:", '%04d' % (iteration + 1), "cost=", "{:.9f}".format(c), \
                 "size_factor=", sess.run(tf_size_factor), "price_offset=", sess.run(tf_price_offset))
             # Save the fit size_factor and price_offset to allow animation of learning process
@@ -163,6 +166,6 @@ with tf.Session() as sess:
         return line,
 
     ani = animation.FuncAnimation(fig, animate, frames=np.arange(0, fit_plot_idx), init_func=initAnim,
-                                 interval=1000, blit=True)
+                                 interval=500, blit=True)
 
     plt.show()   
