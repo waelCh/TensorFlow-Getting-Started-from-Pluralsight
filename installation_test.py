@@ -5,7 +5,7 @@ sess = tf.Session()
 
 # Verify we can print a string
 hello = tf.constant('Assalamou 3alaykom .....')
-print(sess.run(hello))
+print(sess.run(hello))  
 
 #   Perform some simple Math
 a = tf.constant(20)
