@@ -11,7 +11,7 @@ sess = tf.InteractiveSession()
 x = tf.placeholder(tf.float32, shape=[None, 784])
 y_ = tf.placeholder(tf.float32, [None, 10])
 
-# change the MNIST input data from a list of values to a 28 pixel X 28 pixel X 1 grayscale value cube
+# change the MNIST input data from a list of values to a  28 pixel X 28 pixel X 1 grayscale value cube
 #    which the Convolution NN can use.
 x_image = tf.reshape(x, [-1,28,28,1], name="x_image")
 
