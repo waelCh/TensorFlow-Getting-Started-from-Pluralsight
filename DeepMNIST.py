@@ -43,8 +43,10 @@ W_conv1 = weight_variable([5, 5, 1, 32])
 b_conv1 = bias_variable([32])
 # Do convolution on images, add bias and push through RELU activation
 h_conv1 = tf.nn.relu(conv2d(x_image, W_conv1) + b_conv1)
+print("h_conv1: ", h_conv1)
 # take results and run through max_pool
 h_pool1 = max_pool_2x2(h_conv1)
+print("h_pool1: ", h_pool1)
 
 # 2nd Convolution layer
 # Process the 32 features from Convolution layer 1, in 5 X 5 patch.  Return 64 features weights and biases
@@ -52,7 +54,9 @@ W_conv2 = weight_variable([5, 5, 32, 64])
 b_conv2 = bias_variable([64])
 # Do convolution of the output of the 1st convolution layer.  Pool results 
 h_conv2 = tf.nn.relu(conv2d(h_pool1, W_conv2) + b_conv2)
+print("h_conv2: ", h_conv2)
 h_pool2 = max_pool_2x2(h_conv2)
+print("h_pool2: ", h_pool2)
 
 # Fully Connected Layer
 W_fc1 = weight_variable([7 * 7 * 64, 1024])
@@ -60,6 +64,7 @@ b_fc1 = bias_variable([1024])
 
 #   Connect output of pooling layer 2 as input to full connected layer
 h_pool2_flat = tf.reshape(h_pool2, [-1, 7*7*64])
+print("h_pool2_flat: ", h_pool2_flat)
 h_fc1 = tf.nn.relu(tf.matmul(h_pool2_flat, W_fc1) + b_fc1)
 
 # dropout some neurons to reduce overfitting
@@ -67,7 +72,7 @@ keep_prob = tf.placeholder(tf.float32)  # get dropout probability as a training 
 h_fc1_drop = tf.nn.dropout(h_fc1, keep_prob)
 
 # Readout layer
-W_fc2 = weight_variable([1024, 10])
+W_fc2 = weight_variable(h_pool2_flat024, 10])
 b_fc2 = bias_variable([10])
 
 # Define model
