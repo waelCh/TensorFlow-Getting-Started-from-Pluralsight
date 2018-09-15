@@ -79,7 +79,7 @@ with tf.name_scope("conv2"):
     with tf.name_scope("weights"):
         W_conv2 = weight_variable([5, 5, 32, 64], name="weight")
         variable_summaries(W_conv2)
-    with tf.name_scope("biases")
+    with tf.name_scope("biases"):
         b_conv2 = bias_variable([64], name="bias")
         variable_summaries(b_conv2)
     # Do convolution of the output of the 1st convolution layer.  Pool results 
