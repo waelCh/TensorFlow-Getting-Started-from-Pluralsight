@@ -109,7 +109,7 @@ tbWriter = tf.summary.FileWriter(logPath, sess.graph)
 import time
 
 #  define number of steps and how often we display progress
-num_steps = 2000
+num_steps = 3000
 display_every = 100
 
 # Start timer

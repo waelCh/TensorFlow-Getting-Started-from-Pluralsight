@@ -3,3 +3,4 @@
 
 #   Folders to ignore
 MNIST_data/
+tb_logs/
